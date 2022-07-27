@@ -1,0 +1,33 @@
+{
+  "name": "openapi-mock-json-generator",
+  "version": "0.0.1",
+  "description": "Generate mock json data from OpenAPI specification file",
+  "main": "dist/cli.js",
+  "module": "./dist/cli.mjs",
+  "exports": {
+    ".": {
+      "require": "./dist/cli.js",
+      "import": "./dist/cli.mjs",
+      "types": "./dist/cli.d.ts"
+    }
+  },
+  "bin": {
+    "openapi-json": "./bin/cli.js"
+  },
+  "scripts": {
+    "build": "tsup",
+    "preview": "pnpm -w run build && node ./dist/cli.js --input ./example/petstore.yml --output ./example"
+  },
+  "keywords": [],
+  "author": "Daiki Urata (@7nohe)",
+  "license": "MIT",
+  "dependencies": {
+    "@apidevtools/swagger-parser": "^10.1.0",
+    "commander": "^9.4.0",
+    "openapi-types": "^12.0.0",
+    "typescript": "^4.7.4"
+  },
+  "devDependencies": {
+    "tsup": "^6.2.0"
+  }
+}
