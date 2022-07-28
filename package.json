@@ -1,5 +1,5 @@
 {
-  "name": "openapi-mock-json-generator",
+  "name": "@7nohe/openapi-mock-json-generator",
   "version": "0.0.1",
   "description": "Generate mock json data from OpenAPI specification file",
   "main": "dist/cli.js",
