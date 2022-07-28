@@ -23,11 +23,14 @@
   "license": "MIT",
   "dependencies": {
     "@apidevtools/swagger-parser": "^10.1.0",
+    "@faker-js/faker": "^7.3.0",
     "commander": "^9.4.0",
+    "lodash": "^4.17.21",
     "openapi-types": "^12.0.0",
     "typescript": "^4.7.4"
   },
   "devDependencies": {
+    "@types/lodash": "^4.14.182",
     "tsup": "^6.2.0"
   }
 }

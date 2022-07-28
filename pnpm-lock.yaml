@@ -1,20 +1,27 @@
 lockfileVersion: 5.4
 
-specifiers:
-  '@apidevtools/swagger-parser': ^10.1.0
-  commander: ^9.4.0
-  openapi-types: ^12.0.0
-  tsup: ^6.2.0
-  typescript: ^4.7.4
+importers:
 
-dependencies:
-  '@apidevtools/swagger-parser': 10.1.0_openapi-types@12.0.0
-  commander: 9.4.0
-  openapi-types: 12.0.0
-  typescript: 4.7.4
-
-devDependencies:
-  tsup: 6.2.0_typescript@4.7.4
+  .:
+    specifiers:
+      '@apidevtools/swagger-parser': ^10.1.0
+      '@faker-js/faker': ^7.3.0
+      '@types/lodash': ^4.14.182
+      commander: ^9.4.0
+      lodash: ^4.17.21
+      openapi-types: ^12.0.0
+      tsup: ^6.2.0
+      typescript: ^4.7.4
+    dependencies:
+      '@apidevtools/swagger-parser': 10.1.0_openapi-types@12.0.0
+      '@faker-js/faker': 7.3.0
+      commander: 9.4.0
+      lodash: 4.17.21
+      openapi-types: 12.0.0
+      typescript: 4.7.4
+    devDependencies:
+      '@types/lodash': 4.14.182
+      tsup: 6.2.0_typescript@4.7.4
 
 packages:
 
@@ -50,6 +57,11 @@ packages:
       openapi-types: 12.0.0
     dev: false
 
+  /@faker-js/faker/7.3.0:
+    resolution: {integrity: sha512-1W0PZezq2rxlAssoWemi9gFRD8IQxvf0FPL5Km3TOmGHFG7ib0TbFBJ0yC7D/1NsxunjNTK6WjUXV8ao/mKZ5w==}
+    engines: {node: '>=14.0.0', npm: '>=6.0.0'}
+    dev: false
+
   /@jsdevtools/ono/7.1.3:
     resolution: {integrity: sha512-4JQNk+3mVzK3xh2rqd6RB4J46qUR19azEHBneZyTZM+c456qOrbbM/5xcR8huNCCcbVt7+UmizG6GuUvPvKUYg==}
     dev: false
@@ -73,6 +85,10 @@ packages:
     dependencies:
       '@nodelib/fs.scandir': 2.1.5
       fastq: 1.13.0
+    dev: true
+
+  /@types/lodash/4.14.182:
+    resolution: {integrity: sha512-/THyiqyQAP9AfARo4pF+aCGcyiQ94tX/Is2I7HofNRqoYLgN1PBoOWu2/zTA5zMxzP5EFutMtWtGAFRKUe961Q==}
     dev: true
 
   /ajv-draft-04/1.0.0_ajv@8.11.0:
@@ -609,6 +625,10 @@ packages:
   /lodash.sortby/4.7.0:
     resolution: {integrity: sha512-HDWXG8isMntAyRF5vZ7xKuEvOhT4AhlRt/3czTSjvGUxjYCBVRQY48ViDHyfYz9VIoBkW4TMGQNapx+l3RUwdA==}
     dev: true
+
+  /lodash/4.17.21:
+    resolution: {integrity: sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==}
+    dev: false
 
   /merge-stream/2.0.0:
     resolution: {integrity: sha512-abv/qOcuPfk3URPfDzmZU1LKmuw8kT+0nIHvKrKgFrwifol/doWcdA4ZqsWQ8ENrFKkd67Mfpo/LovbIUsbt3w==}

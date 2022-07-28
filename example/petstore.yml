@@ -48,6 +48,10 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Pet'
+              example:
+                - id: 1
+                - id: 2
+                - id: 3
         default:
           description: unexpected error
           content:
@@ -122,6 +126,18 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
+  /pets/{id}/toys:
+    get:
+      description: 'Returns toys'
+      operationId: getToys
+      parameters: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Toys'
 components:
   schemas:
     Pet:
@@ -134,6 +150,8 @@ components:
             id:
               type: integer
               format: int64
+          example:
+            id: 1
 
     NewPet:
       type: object
@@ -143,7 +161,10 @@ components:
         name:
           type: string
         tag:
-          type: string    
+          type: string
+      example:
+        name: Victory
+        tag: available
 
     Error:
       type: object
@@ -156,3 +177,12 @@ components:
           format: int32
         message:
           type: string
+      example:
+        code: 404
+        message: Not Found
+
+    Toys:
+      type: array
+      items:
+        type: string
+
