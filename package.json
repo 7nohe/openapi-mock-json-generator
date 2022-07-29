@@ -1,7 +1,7 @@
 {
   "name": "@7nohe/openapi-mock-json-generator",
   "version": "0.0.1",
-  "description": "Generate mock json data from OpenAPI specification file",
+  "description": "Generate mock API responses from OpenAPI specification file",
   "main": "dist/cli.js",
   "module": "./dist/cli.mjs",
   "exports": {
@@ -16,9 +16,11 @@
   },
   "scripts": {
     "build": "tsup",
-    "preview": "pnpm -w run build && node ./dist/cli.js --input ./example/petstore.yml --output ./example/mocks"
+    "preview": "pnpm -w run build && node ./dist/cli.js --input ./example/petstore.yml --output ./example/mocks",
+    "prepublishOnly": "npm run build",
+    "release": "npx git-ensure -a && npx bumpp --commit --tag --push"
   },
-  "keywords": [],
+  "keywords": ["codegen", "openapi", "mock", "json", "faker", "fakerjs", "jest", "msw", "nock", "swagger"],
   "author": "Daiki Urata (@7nohe)",
   "license": "MIT",
   "dependencies": {
@@ -26,10 +28,10 @@
     "@faker-js/faker": "^7.3.0",
     "commander": "^9.4.0",
     "lodash": "^4.17.21",
-    "openapi-types": "^12.0.0",
     "typescript": "^4.7.4"
   },
   "devDependencies": {
+    "openapi-types": "^12.0.0",
     "@types/lodash": "^4.14.182",
     "@types/node": "^18.6.2",
     "tsup": "^6.2.0"
