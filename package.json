@@ -1,6 +1,6 @@
 {
   "name": "@7nohe/openapi-mock-json-generator",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Generate mock API responses from OpenAPI specification file",
   "main": "dist/cli.js",
   "module": "./dist/cli.mjs",
@@ -20,7 +20,18 @@
     "prepublishOnly": "npm run build",
     "release": "npx git-ensure -a && npx bumpp --commit --tag --push"
   },
-  "keywords": ["codegen", "openapi", "mock", "json", "faker", "fakerjs", "jest", "msw", "nock", "swagger"],
+  "keywords": [
+    "codegen",
+    "openapi",
+    "mock",
+    "json",
+    "faker",
+    "fakerjs",
+    "jest",
+    "msw",
+    "nock",
+    "swagger"
+  ],
   "author": "Daiki Urata (@7nohe)",
   "license": "MIT",
   "dependencies": {
