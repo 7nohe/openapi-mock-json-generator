@@ -2,20 +2,20 @@ import { OpenAPIV3 } from "openapi-types";
 import { CLIOptions } from "./cli";
 import { parse } from "./parse";
 import _ from "lodash";
-import { transformJSONSchemaToFakerCode } from "./transform";
+import { transformJSONSchemaToFakerJson } from "./transform";
 import { faker } from "@faker-js/faker";
 import { print } from "./print";
 
 faker.seed(1);
 
 export const generate = async (options: CLIOptions) => {
-  const { output, input } = options;
+  const { input } = options;
   const doc = await parse(input);
   const operations = getOperationDefinitions(doc);
   operations.forEach(operation => {
     operation.responses.forEach(response => {
       const fileName = `${operation.method}${operation.path.replace(/\//g, "-")}-${response.code}.json`;
-      const json = transformJSONSchemaToFakerCode(response.jsonContent);
+      const json = transformJSONSchemaToFakerJson(response.jsonContent);
       print(json, fileName, options);
     })
   })

@@ -16,7 +16,7 @@
   },
   "scripts": {
     "build": "tsup",
-    "preview": "pnpm -w run build && node ./dist/cli.js --input ./example/petstore.yml"
+    "preview": "pnpm -w run build && node ./dist/cli.js --input ./example/petstore.yml --output ./example/mocks"
   },
   "keywords": [],
   "author": "Daiki Urata (@7nohe)",

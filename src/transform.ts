@@ -1,7 +1,7 @@
 import { faker } from "@faker-js/faker";
 import { OpenAPIV3 } from "openapi-types";
 
-export function transformJSONSchemaToFakerCode(
+export function transformJSONSchemaToFakerJson(
   jsonSchema?: OpenAPIV3.SchemaObject,
   key?: string
 ): string {
@@ -16,13 +16,13 @@ export function transformJSONSchemaToFakerCode(
   if (Array.isArray(jsonSchema.type)) {
     return faker.helpers.arrayElement([
       jsonSchema.type
-        .map((type) => transformJSONSchemaToFakerCode({ ...jsonSchema, type }))
+        .map((type) => transformJSONSchemaToFakerJson({ ...jsonSchema, type }))
         .join(","),
     ]);
   }
 
   if (jsonSchema.enum) {
-    return faker.helpers.arrayElement(jsonSchema.enum);
+    return `"${faker.helpers.arrayElement(jsonSchema.enum)}"`;
   }
 
   switch (jsonSchema.type) {
@@ -41,7 +41,7 @@ export function transformJSONSchemaToFakerCode(
       ) {
         return [...new Array(5).keys()]
           .map((_) => ({
-            [faker.lorem.word()]: transformJSONSchemaToFakerCode(
+            [faker.lorem.word()]: transformJSONSchemaToFakerJson(
               jsonSchema.additionalProperties as OpenAPIV3.SchemaObject
             ),
           }))
@@ -51,16 +51,16 @@ export function transformJSONSchemaToFakerCode(
 
       return `{${Object.entries(jsonSchema.properties ?? {})
         .map(([k, v]) => {
-          return `${JSON.stringify(k)}: ${transformJSONSchemaToFakerCode(
+          return `${JSON.stringify(k)}: ${transformJSONSchemaToFakerJson(
             v as OpenAPIV3.SchemaObject,
             k
           )}`;
         })
         .join(",\n")}}`;
     case "array":
-      return '[' + [...new Array(faker.datatype.number({ max: 20 })).keys()]
+      return '[' + [...new Array(faker.datatype.number({ max: 10 })).keys()]
         .map((_) =>
-          transformJSONSchemaToFakerCode(
+          transformJSONSchemaToFakerJson(
             jsonSchema.items as OpenAPIV3.SchemaObject
           )
         ) + ']';
