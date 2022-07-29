@@ -1,7 +1,9 @@
 import { faker } from "@faker-js/faker";
 import { OpenAPIV3 } from "openapi-types";
+import { CLIOptions } from "./cli";
 
 export function transformJSONSchemaToFakerJson(
+  options: CLIOptions,
   jsonSchema?: OpenAPIV3.SchemaObject,
   key?: string
 ): string {
@@ -13,57 +15,59 @@ export function transformJSONSchemaToFakerJson(
     return JSON.stringify(jsonSchema.example);
   }
 
-  if (Array.isArray(jsonSchema.type)) {
-    return faker.helpers.arrayElement([
-      jsonSchema.type
-        .map((type) => transformJSONSchemaToFakerJson({ ...jsonSchema, type }))
-        .join(","),
-    ]);
-  }
-
   if (jsonSchema.enum) {
     return `"${faker.helpers.arrayElement(jsonSchema.enum)}"`;
   }
 
   switch (jsonSchema.type) {
     case "string":
-      return `"${transformStringBasedOnFormat(jsonSchema.format, key).toString()}"`;
+      return `"${transformStringBasedOnFormat(jsonSchema.format, key)}"`;
     case "number":
       return `"${faker.datatype.number()}"`;
     case "integer":
-      return `"${faker.datatype.number().toString()}"`;
+      return `"${faker.datatype.number()}"`;
     case "boolean":
-      return `"${faker.datatype.boolean().toString()}"`;
+      return `"${faker.datatype.boolean()}"`;
     case "object":
       if (
         !jsonSchema.properties &&
         typeof jsonSchema.additionalProperties === "object"
       ) {
-        return [...new Array(5).keys()]
-          .map((_) => ({
-            [faker.lorem.word()]: transformJSONSchemaToFakerJson(
+        const keys = [...new Array(Number(options.maxArrayLength)).keys()]
+        const result = `{${keys.map(
+          (index) =>
+            `"${faker.lorem.word()}-${index}": ${transformJSONSchemaToFakerJson(
+              options,
               jsonSchema.additionalProperties as OpenAPIV3.SchemaObject
-            ),
-          }))
-          .reduce((acc, next) => Object.assign(acc, next), {})
-          .toString();
+            )}`
+        )}}`;
+        return result;
       }
 
       return `{${Object.entries(jsonSchema.properties ?? {})
         .map(([k, v]) => {
           return `${JSON.stringify(k)}: ${transformJSONSchemaToFakerJson(
+            options,
             v as OpenAPIV3.SchemaObject,
             k
           )}`;
         })
         .join(",\n")}}`;
     case "array":
-      return '[' + [...new Array(faker.datatype.number({ max: 10 })).keys()]
-        .map((_) =>
+      return (
+        "[" +
+        [
+          ...new Array(
+            faker.datatype.number({ max: options.maxArrayLength })
+          ).keys(),
+        ].map((_) =>
           transformJSONSchemaToFakerJson(
+            options,
             jsonSchema.items as OpenAPIV3.SchemaObject
           )
-        ) + ']';
+        ) +
+        "]"
+      );
     default:
       return "null";
   }

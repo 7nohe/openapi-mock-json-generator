@@ -15,7 +15,7 @@ export const generate = async (options: CLIOptions) => {
   operations.forEach(operation => {
     operation.responses.forEach(response => {
       const fileName = `${operation.method}${operation.path.replace(/\//g, "-")}-${response.code}.json`;
-      const json = transformJSONSchemaToFakerJson(response.jsonContent);
+      const json = transformJSONSchemaToFakerJson(options, response.jsonContent);
       print(json, fileName, options);
     })
   })
