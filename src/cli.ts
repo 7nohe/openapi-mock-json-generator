@@ -17,7 +17,7 @@ program
     "-i, --input <value>",
     "OpenAPI specification, can be a path, url or string content (required)"
   )
-  .option("-o, --output <value>", "Output directory", "openapi")
+  .option("-o, --output <value>", "Output directory", "mocks")
   .parse();
 
 const options = program.opts<CLIOptions>();

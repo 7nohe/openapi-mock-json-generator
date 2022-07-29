@@ -48,10 +48,6 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Pet'
-              example:
-                - id: 1
-                - id: 2
-                - id: 3
         default:
           description: unexpected error
           content:
@@ -150,8 +146,6 @@ components:
             id:
               type: integer
               format: int64
-          example:
-            id: 1
 
     NewPet:
       type: object
@@ -162,9 +156,6 @@ components:
           type: string
         tag:
           type: string
-      example:
-        name: Victory
-        tag: available
 
     Error:
       type: object

@@ -2,12 +2,23 @@ import { OpenAPIV3 } from "openapi-types";
 import { CLIOptions } from "./cli";
 import { parse } from "./parse";
 import _ from "lodash";
+import { transformJSONSchemaToFakerCode } from "./transform";
+import { faker } from "@faker-js/faker";
+import { print } from "./print";
+
+faker.seed(1);
 
 export const generate = async (options: CLIOptions) => {
   const { output, input } = options;
   const doc = await parse(input);
   const operations = getOperationDefinitions(doc);
-  // TODO: generate mock data
+  operations.forEach(operation => {
+    operation.responses.forEach(response => {
+      const fileName = `${operation.method}${operation.path.replace(/\//g, "-")}-${response.code}.json`;
+      const json = transformJSONSchemaToFakerCode(response.jsonContent);
+      print(json, fileName, options);
+    })
+  })
 };
 
 type OperationDefinition = {
@@ -112,8 +123,8 @@ function recursiveResolveSchema(
     ) as OpenAPIV3.SchemaObject[];
 
     resolvedSchema = {
-      type: "array",
-      items: (resolvedSchema.allOf as OpenAPIV3.SchemaObject[]).reduce(
+      type: "object",
+      ...(resolvedSchema.allOf as OpenAPIV3.SchemaObject[]).reduce(
         (resolved, item) => _.merge(resolved, item),
         {}
       ),
