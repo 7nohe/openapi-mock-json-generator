@@ -10,7 +10,9 @@ export const PetList = () => {
   return (
     <ul>
       {data.map((pet, index) => (
-        <li key={index}>{pet.name}</li>
+        <li data-testid="pet-list" key={index}>
+          {pet.name}
+        </li>
       ))}
     </ul>
   );
