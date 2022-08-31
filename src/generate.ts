@@ -5,11 +5,13 @@ import _ from "lodash";
 import { transformJSONSchemaToFakerJson } from "./transform";
 import { faker } from "@faker-js/faker";
 import { print } from "./print";
+import { UsableLocale } from "@faker-js/faker";
 
 faker.seed(1);
 
 export const generate = async (options: CLIOptions) => {
-  const { input } = options;
+  const { input, locals = 'en' } = options;
+  faker.locale = locals;
   const doc = await parse(input);
   const operations = getOperationDefinitions(doc);
   operations.forEach(operation => {
