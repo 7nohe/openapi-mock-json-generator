@@ -7,7 +7,7 @@ export type CLIOptions = {
   input: string;
   output: string;
   maxArrayLength?: number;
-  locals?: UsableLocale;
+  locale?: UsableLocale;
 };
 
 const program = new Command();
@@ -23,7 +23,7 @@ program
   .option("-o, --output <value>", "Output directory", "mocks")
   .option("--max-array-length <value>", "Maximum length of array", "10")
   .option(
-    "--locals <value>",
+    "--locale <value>",
     "Specifies the language of the data created by the mock",
     "en"
   )

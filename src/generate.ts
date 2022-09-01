@@ -10,8 +10,11 @@ import { UsableLocale } from "@faker-js/faker";
 faker.seed(1);
 
 export const generate = async (options: CLIOptions) => {
-  const { input, locals = 'en' } = options;
-  faker.locale = locals;
+  const { input, locale = "en" } = options;
+  if (!faker.locales[locale]) {
+    throw new Error(`Locale ${locale} is not supported.`);
+  }
+  faker.locale = locale;
   const doc = await parse(input);
   const operations = getOperationDefinitions(doc);
   operations.forEach(operation => {
