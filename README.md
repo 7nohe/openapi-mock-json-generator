@@ -28,6 +28,8 @@ Options:
   -i, --input <value>         OpenAPI specification, can be a path, url or string content (required)
   -o, --output <value>        Output directory (default: "mocks")
   --max-array-length <value>  Maximum length of array (default: "10")
+  --locale <value>            Specifies the language of the data created by the mock (default: "en")
+  -s, --seed <value>          Set a randomness seed (default: "1")
   -h, --help                  display help for command
 ```
 

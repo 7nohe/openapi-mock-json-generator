@@ -5,12 +5,14 @@ import _ from "lodash";
 import { transformJSONSchemaToFakerJson } from "./transform";
 import { faker } from "@faker-js/faker";
 import { print } from "./print";
-import { UsableLocale } from "@faker-js/faker";
 
-faker.seed(1);
 
 export const generate = async (options: CLIOptions) => {
-  const { input, locale = "en" } = options;
+  const { input, locale = "en", seed } = options;
+  const seedNumber = Number(seed);
+  if (Number.isInteger(seedNumber)) {
+    faker.seed(seedNumber);
+  }
   if (!faker.locales[locale]) {
     throw new Error(`Locale ${locale} is not supported.`);
   }

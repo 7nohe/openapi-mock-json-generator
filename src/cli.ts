@@ -8,6 +8,7 @@ export type CLIOptions = {
   output: string;
   maxArrayLength?: number;
   locale?: UsableLocale;
+  seed?: number;
 };
 
 const program = new Command();
@@ -26,6 +27,11 @@ program
     "--locale <value>",
     "Specifies the language of the data created by the mock",
     "en"
+  )
+  .option(
+    "-s, --seed <value>",
+    "Set a randomness seed",
+    "1"
   )
   .parse();
 
