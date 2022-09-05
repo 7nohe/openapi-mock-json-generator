@@ -33,6 +33,12 @@
     "swagger"
   ],
   "author": "Daiki Urata (@7nohe)",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/7nohe/openapi-mock-json-generator.git"
+  },
+  "homepage": "https://github.com/7nohe/openapi-mock-json-generator",
+  "bugs": "https://github.com/7nohe/openapi-mock-json-generator/issues",
   "license": "MIT",
   "dependencies": {
     "@apidevtools/swagger-parser": "^10.1.0",
