@@ -1,15 +1,37 @@
-[{"name": "Edgar Klocko",
-"tag": "eos",
-"hoge": "93912"},{"name": "Angelica Schmidt",
-"tag": "et",
-"hoge": "31342"},{"name": "Alison Larson",
-"tag": "saepe",
-"hoge": "82914"},{"name": "Nadine Batz",
-"tag": "inventore",
-"hoge": "87814"},{"name": "Roger Medhurst",
-"tag": "a",
-"hoge": "41178"},{"name": "Jimmy Pollich",
-"tag": "qui",
-"hoge": "68650"},{"name": "Mr. Gustavo Jenkins",
-"tag": "fuga",
-"hoge": "98886"}]
+[
+  {
+    "name": "Edgar Klocko",
+    "tag": "eos",
+    "hoge": 93912
+  },
+  {
+    "name": "Angelica Schmidt",
+    "tag": "et",
+    "hoge": 31342
+  },
+  {
+    "name": "Alison Larson",
+    "tag": "saepe",
+    "hoge": 82914
+  },
+  {
+    "name": "Nadine Batz",
+    "tag": "inventore",
+    "hoge": 87814
+  },
+  {
+    "name": "Roger Medhurst",
+    "tag": "a",
+    "hoge": 41178
+  },
+  {
+    "name": "Jimmy Pollich",
+    "tag": "qui",
+    "hoge": 68650
+  },
+  {
+    "name": "Mr. Gustavo Jenkins",
+    "tag": "fuga",
+    "hoge": 98886
+  }
+]

@@ -1,6 +1,8 @@
-{"id": "56591",
-"petId": "57411",
-"quantity": "61393",
-"shipDate": "Thu Jul 14 2022 09:40:53 GMT+0900 (Japan Standard Time)",
-"status": "delivered",
-"complete": "true"}
+{
+  "id": 56591,
+  "petId": 57411,
+  "quantity": 61393,
+  "shipDate": "2023-07-30T16:43:30.861Z",
+  "status": "delivered",
+  "complete": true
+}

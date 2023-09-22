@@ -23,7 +23,7 @@ export const generate = async (options: CLIOptions) => {
     operation.responses.forEach(response => {
       const fileName = `${operation.method}${operation.path.replace(/\//g, "-")}-${response.code}.json`;
       const json = transformJSONSchemaToFakerJson(options, response.jsonContent);
-      print(json, fileName, options);
+      print(JSON.stringify(json, null, 2), fileName, options);
     })
   })
 };
